@@ -25,7 +25,9 @@ public class ReceiveRequest {
   SendResponseForReceivedRequest sendResponseForReceivedRequest;
   @KafkaListener(topics = "cloudNodeReq")
   public void receive(String query) {
-    LOGGER.info("received payload='{}'", query);
+   // LOGGER.info("received payload='{}'", query);
+ //   System.out.println("Reached here and end");
+    System.out.println(query);
     String payload[] = query.split("#");
     Request request = new Request();
     ProcessRequest processRequest = new ProcessRequest();

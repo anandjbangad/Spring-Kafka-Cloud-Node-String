@@ -34,8 +34,8 @@ public class SpringKafkaApplicationTest {
   @Autowired
   private SendResponseForReceivedRequest sendResponseForReceivedRequest;
 
-  @Autowired
-  private com.codenotfound.kafka.nodeMakeResponse.Test test;
+//  @Autowired
+//  private com.codenotfound.kafka.nodeMakeResponse.Test test;
   @ClassRule
   public static KafkaEmbedded kafkaEmbedded = new KafkaEmbedded(1, true, HELLOWORLD_TOPIC);
 
@@ -54,7 +54,8 @@ public class SpringKafkaApplicationTest {
     //com.codenotfound.kafka.model.Request request = new com.codenotfound.kafka.model.Request("","","",)
     //sender.send(HELLOWORLD_TOPIC, "Hello Spring Kafka!");
     String query = "cloudNodeReq#DeviceNode#HelloFromDeviceNode#test2";
-    test.send(query);
+    //sendResponseForReceivedRequest.sendTopicQuery("cloudNodeReq",query);
+   // test.send(query);
 //    receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
 //    assertThat(receiver.getLatch().getCount()).isEqualTo(0);
   }
