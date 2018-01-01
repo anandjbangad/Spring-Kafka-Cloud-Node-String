@@ -1,4 +1,4 @@
-package com.codenotfound.kafka.nodeReceiveRequest;
+package com.codenotfound.kafka.Receiver;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 
-public class ReceiveRequest {
+public class ReceiveRequestReceiveResponse {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ReceiveRequest.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ReceiveRequestReceiveResponse.class);
 
   private CountDownLatch latch = new CountDownLatch(1);
 
@@ -21,12 +21,15 @@ public class ReceiveRequest {
     return latch;
   }
 
+
+
   @Autowired
   SendResponseForReceivedRequest sendResponseForReceivedRequest;
+
+  private static final String VOICE_NAME_KEVIN = "kevin16";
+
   @KafkaListener(topics = "cloudNodeReq")
   public void receive(String query) {
-   // LOGGER.info("received payload='{}'", query);
- //   System.out.println("Reached here and end");
     System.out.println(query);
     String payload[] = query.split("#");
     Request request = new Request();
@@ -39,7 +42,21 @@ public class ReceiveRequest {
       request.setResponseGivenBackTo(payload[3]);
     }
     response =  processRequest.requestProcess(request);
+    TextToSpeechConvertor textToSpeechConvertor = new TextToSpeechConvertor();
+    textToSpeechConvertor.speak(request.getRequestValue());
+
     latch.countDown();
     sendResponseForReceivedRequest.send(response);
   }
+
+      @KafkaListener(topics = "cloudNodeResp")
+    public void response(String response){
+    //    System.out.println(response);
+        String responsePayload[];
+        responsePayload = response.split("#");
+        LOGGER.info("Response Received from = '{}'  + response is = '{}'",responsePayload[2],responsePayload[1]);
+        TextToSpeechConvertor textToSpeechConvertor = new TextToSpeechConvertor();
+        textToSpeechConvertor.speak(responsePayload[1]);
+    }
+
 }

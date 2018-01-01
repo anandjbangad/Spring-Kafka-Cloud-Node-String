@@ -2,12 +2,9 @@ package com.codenotfound.kafka;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
-import org.junit.runner.Request;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +13,7 @@ import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.test.rule.KafkaEmbedded;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.codenotfound.kafka.nodeReceiveRequest.ReceiveRequest;
+import com.codenotfound.kafka.Receiver.ReceiveRequestReceiveResponse;
 import com.codenotfound.kafka.nodeMakeResponse.SendResponseForReceivedRequest;
 
 @RunWith(SpringRunner.class)
@@ -29,7 +26,7 @@ public class SpringKafkaApplicationTest {
   private KafkaListenerEndpointRegistry kafkaListenerEndpointRegistry;
 
   @Autowired
-  private ReceiveRequest receiver;
+  private ReceiveRequestReceiveResponse receiver;
 
   @Autowired
   private SendResponseForReceivedRequest sendResponseForReceivedRequest;

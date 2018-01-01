@@ -1,4 +1,4 @@
-package com.codenotfound.kafka.nodeReceiveRequest;
+package com.codenotfound.kafka.Receiver;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 
 @Configuration
 @EnableKafka
-public class ReceiveRequestConfig {
+public class ReceiveRequestReceiveResponseConfig {
 
   @Value("${kafka.bootstrap-servers}")
   private String bootstrapServers;
@@ -30,7 +30,7 @@ public class ReceiveRequestConfig {
     props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
     // allows a pool of processes to divide the work of consuming and processing records
-    props.put(ConsumerConfig.GROUP_ID_CONFIG, "helloworld");
+    props.put(ConsumerConfig.GROUP_ID_CONFIG, "helloworld12");
 
     return props;
   }
@@ -50,7 +50,9 @@ public class ReceiveRequestConfig {
   }
 
   @Bean
-  public ReceiveRequest receiver() {
-    return new ReceiveRequest();
+  public ReceiveRequestReceiveResponse receiver() {
+    return new ReceiveRequestReceiveResponse();
   }
+
+
 }

@@ -46,6 +46,13 @@
       <version>${spring-kafka.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/net.sf.sociaal/freetts -->
+
+
   </dependencies>
 
   <build>
