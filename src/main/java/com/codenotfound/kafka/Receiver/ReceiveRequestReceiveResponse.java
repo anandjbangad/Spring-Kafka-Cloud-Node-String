@@ -35,15 +35,16 @@ public class ReceiveRequestReceiveResponse {
     Request request = new Request();
     ProcessRequest processRequest = new ProcessRequest();
     Response response = new Response();
-    if(payload.length == 4){
+    if(payload.length == 5){
       request.setrequestSentTo(payload[0]);
       request.setRequestSentBy(payload[1]);
       request.setRequestValue(payload[2]);
       request.setResponseGivenBackTo(payload[3]);
+      request.setRequestNumber(payload[4]);
     }
     response =  processRequest.requestProcess(request);
-    TextToSpeechConvertor textToSpeechConvertor = new TextToSpeechConvertor();
-    textToSpeechConvertor.speak(request.getRequestValue());
+ //   TextToSpeechConvertor textToSpeechConvertor = new TextToSpeechConvertor();
+ //   textToSpeechConvertor.speak(request.getRequestValue());
 
     latch.countDown();
     sendResponseForReceivedRequest.send(response);
@@ -54,9 +55,10 @@ public class ReceiveRequestReceiveResponse {
     //    System.out.println(response);
         String responsePayload[];
         responsePayload = response.split("#");
-        LOGGER.info("Response Received from = '{}'  + response is = '{}'",responsePayload[2],responsePayload[1]);
-        TextToSpeechConvertor textToSpeechConvertor = new TextToSpeechConvertor();
-        textToSpeechConvertor.speak(responsePayload[1]);
+        LOGGER.info("Response Received from = '{}' for RequestNumber '{}' and response is = '{}'",responsePayload[2],responsePayload[3],responsePayload[1]);
+  //      TextToSpeechConvertor textToSpeechConvertor = new TextToSpeechConvertor();
+  //
+        //      textToSpeechConvertor.speak(responsePayload[1]);
     }
 
 }
