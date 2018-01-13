@@ -30,6 +30,8 @@ public class ReceiveRequestReceiveResponse {
 
   @KafkaListener(topics = "cloudNodeReq")
   public void receive(String query) {
+    DisplayRequest display = new DisplayRequest();
+    display.createWindow(query);
     System.out.println(query);
     String payload[] = query.split("#");
     Request request = new Request();
@@ -48,6 +50,7 @@ public class ReceiveRequestReceiveResponse {
 
     latch.countDown();
     sendResponseForReceivedRequest.send(response);
+
   }
 
       @KafkaListener(topics = "cloudNodeResp")
@@ -55,6 +58,8 @@ public class ReceiveRequestReceiveResponse {
     //    System.out.println(response);
         String responsePayload[];
         responsePayload = response.split("#");
+        DisplayResponse displayResponse = new DisplayResponse();
+        displayResponse.createWindow("Response Received from " +responsePayload[2] +" for RequestNumber { " + responsePayload[3] + " }" + " and response is = " + responsePayload[1] );
         LOGGER.info("Response Received from = '{}' for RequestNumber '{}' and response is = '{}'",responsePayload[2],responsePayload[3],responsePayload[1]);
   //      TextToSpeechConvertor textToSpeechConvertor = new TextToSpeechConvertor();
   //
