@@ -27,8 +27,8 @@
       <file leaf-file-name="DisplayRequest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/codenotfound/kafka/Receiver/DisplayRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+            <state relative-caret-position="420">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -546,7 +546,7 @@
       <workItem from="1515875546150" duration="2651000" />
       <workItem from="1516977082647" duration="2090000" />
       <workItem from="1516980970231" duration="6327000" />
-      <workItem from="1517090430719" duration="690000" />
+      <workItem from="1517090430719" duration="758000" />
     </task>
     <task id="LOCAL-00001" summary="Working with Rest Request">
       <created>1514543176810</created>
@@ -576,7 +576,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515876043742</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Modified Window Size, all working , huawei network">
+      <created>1517091144202</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1517091144202</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -612,7 +619,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88451000" />
+    <option name="totallyTimeSpent" value="88519000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1911" y="-9" width="2578" height="1408" extended-state="6" />
@@ -660,7 +667,8 @@
     <MESSAGE value="Cloud,Edge and Device Node All working Simultaneously" />
     <MESSAGE value="Added request number all working" />
     <MESSAGE value="GUI Working" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI Working" />
+    <MESSAGE value="Modified Window Size, all working , huawei network" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified Window Size, all working , huawei network" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1041,8 +1049,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/codenotfound/kafka/Receiver/DisplayRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+        <state relative-caret-position="420">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
