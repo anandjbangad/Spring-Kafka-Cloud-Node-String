@@ -2,6 +2,7 @@ package com.codenotfound.kafka.Receiver;
 
 import java.util.concurrent.CountDownLatch;
 
+import com.codenotfound.kafka.Base64.Java8Base64Image;
 import com.codenotfound.kafka.model.Request;
 import com.codenotfound.kafka.model.Response;
 import com.codenotfound.kafka.CloudNode.ProcessRequest;
@@ -60,6 +61,8 @@ public class ReceiveRequestReceiveResponse {
         responsePayload = response.split("#");
         DisplayResponse displayResponse = new DisplayResponse();
         displayResponse.createWindow("Response Received from " +responsePayload[2] +" for RequestNumber { " + responsePayload[3] + " }" + " and response is = " + responsePayload[1] );
+        Java8Base64Image java8Base64Image = new Java8Base64Image();
+        java8Base64Image.decoder(responsePayload[1], "C:\\kafka_2.11-1.0.0\\response.png");
         LOGGER.info("Response Received from = '{}' for RequestNumber '{}' and response is = '{}'",responsePayload[2],responsePayload[3],responsePayload[1]);
   //      TextToSpeechConvertor textToSpeechConvertor = new TextToSpeechConvertor();
   //
