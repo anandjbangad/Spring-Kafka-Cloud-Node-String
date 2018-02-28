@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 
+import static com.codenotfound.kafka.Base64.Java8Base64Image.decoder;
+
 public class ReceiveRequestReceiveResponse {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ReceiveRequestReceiveResponse.class);
@@ -61,8 +63,8 @@ public class ReceiveRequestReceiveResponse {
         responsePayload = response.split("#");
         DisplayResponse displayResponse = new DisplayResponse();
         displayResponse.createWindow("Response Received from " +responsePayload[2] +" for RequestNumber { " + responsePayload[3] + " }" + " and response is = " + responsePayload[1] );
-        Java8Base64Image java8Base64Image = new Java8Base64Image();
-        java8Base64Image.decoder(responsePayload[1], "C:\\kafka_2.11-1.0.0\\response.png");
+      //  Java8Base64Image java8Base64Image = new Java8Base64Image();
+        decoder(responsePayload[1], "C:\\Users\\Anand J Bangad\\Documents\\decoderimage.jpg");
         LOGGER.info("Response Received from = '{}' for RequestNumber '{}' and response is = '{}'",responsePayload[2],responsePayload[3],responsePayload[1]);
   //      TextToSpeechConvertor textToSpeechConvertor = new TextToSpeechConvertor();
   //
