@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 import static com.codenotfound.kafka.Base64.Java8Base64Image.encoder;
@@ -72,22 +74,30 @@ public class RequestController {
         return ("Cloud Node Makes a request to device node 1. The request is " + request);
     }
     @RequestMapping("/service4")
-    public String service4(@RequestParam(value = "requestQuery", defaultValue = "deviceNodeReq2#CloudNode#HelloFromCloudNode#cloudNodeResp") String requestQuery){
+    public String service4(@RequestParam(value = "requestQuery", defaultValue = "deviceNodeReq2#CloudNode#HelloFromCloudNode#cloudNodeResp") String requestQuery) throws InterruptedException {
         Request request =new Request();
+        String imageFormat = ".jpg";
         String payload[] = requestQuery.split("#");
-        String imagePath = "C:\\Users\\Anand J Bangad\\Documents\\Capture.PNG";
+        //String imagePath = "C:\\Users\\Anand J Bangad\\Documents\\Capture.PNG";
         System.out.println("=================Encoder Image to Base 64!=================");
         Java8Base64Image java8Base64Image = new Java8Base64Image();
-        String base64ImageString = java8Base64Image.encoder(imagePath);
-        if(payload.length ==4) {
-            request.setrequestSentTo(payload[0]);
-            request.setRequestSentBy(payload[1]);
-            request.setRequestValue(base64ImageString);
-            request.setResponseGivenBackTo(payload[3]);
-            request.setRequestNumber(String.valueOf(service3Counter.getAndIncrement()));
+        for (int i=1; i < 1261; i++) {
+            String imageNumber =  String.format("%04d",i);
+            String imagePath = ("C:\\Users\\Anand J Bangad\\Desktop\\Virginia Tech\\Spring18\\New folder\\images\\" + imageNumber + imageFormat);
+            String base64ImageString = java8Base64Image.encoder(imagePath);
+            //decoder(base64ImageString, "C:\\Users\\Anand J Bangad\\Documents\\DecodedImage\\" + imageNumber + imageFormat);
+            if (payload.length == 4) {
+                request.setrequestSentTo(payload[0]);
+                request.setRequestSentBy(payload[1]);
+                request.setRequestValue(base64ImageString);
+                request.setResponseGivenBackTo(payload[3]);
+                request.setRequestNumber(String.valueOf(service3Counter.getAndIncrement()));
+
+            }
+           // TimeUnit.MILLISECONDS.sleep(300);
+            sendRequest.send(request);
 
         }
-        sendRequest.send(request);
         return ("Cloud Node Makes a request to device node 1. The request is " + request);
     }
 }

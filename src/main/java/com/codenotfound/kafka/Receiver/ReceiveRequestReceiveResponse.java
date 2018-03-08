@@ -24,7 +24,10 @@ public class ReceiveRequestReceiveResponse {
     return latch;
   }
 
+  public static int counter =0;
 
+  public static long timerStart =System.currentTimeMillis();
+  public static long totalTime =0;
 
   @Autowired
   SendResponseForReceivedRequest sendResponseForReceivedRequest;
@@ -33,8 +36,8 @@ public class ReceiveRequestReceiveResponse {
 
   @KafkaListener(topics = "cloudNodeReq")
   public void receive(String query) {
-    DisplayRequest display = new DisplayRequest();
-    display.createWindow(query);
+  //  DisplayRequest display = new DisplayRequest();
+  //  display.createWindow(query);
     System.out.println(query);
     String payload[] = query.split("#");
     Request request = new Request();
@@ -51,7 +54,7 @@ public class ReceiveRequestReceiveResponse {
  //   TextToSpeechConvertor textToSpeechConvertor = new TextToSpeechConvertor();
  //   textToSpeechConvertor.speak(request.getRequestValue());
 
-    latch.countDown();
+    //latch.countDown();
     sendResponseForReceivedRequest.send(response);
 
   }
@@ -59,15 +62,22 @@ public class ReceiveRequestReceiveResponse {
       @KafkaListener(topics = "cloudNodeResp")
     public void response(String response){
     //    System.out.println(response);
+        counter = counter + 1;
         String responsePayload[];
         responsePayload = response.split("#");
-        DisplayResponse displayResponse = new DisplayResponse();
-        displayResponse.createWindow("Response Received from " +responsePayload[2] +" for RequestNumber { " + responsePayload[3] + " }" + " and response is = " + responsePayload[1] );
+    //    DisplayResponse displayResponse = new DisplayResponse();
+    //    displayResponse.createWindow("Response Received from " +responsePayload[2] +" for RequestNumber { " + responsePayload[3] + " }" + " and response is = " + responsePayload[1] );
       //  Java8Base64Image java8Base64Image = new Java8Base64Image();
-        decoder(responsePayload[1], "C:\\Users\\Anand J Bangad\\Documents\\decoderimage.jpg");
+    //    decoder(responsePayload[1], "C:\\Users\\Anand J Bangad\\Documents\\DecodedImage\\" + Integer.toString(counter) + ".jpg");
         LOGGER.info("Response Received from = '{}' for RequestNumber '{}' and response is = '{}'",responsePayload[2],responsePayload[3],responsePayload[1]);
   //      TextToSpeechConvertor textToSpeechConvertor = new TextToSpeechConvertor();
   //
+        if (counter > 1200){
+          totalTime = System.currentTimeMillis() - timerStart;
+          System.out.println(totalTime);
+
+        }
+
         //      textToSpeechConvertor.speak(responsePayload[1]);
     }
 
